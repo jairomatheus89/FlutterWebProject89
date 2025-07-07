@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../login/login_screen.dart';
+import '../../main.dart';
 
 class RegisterScreen extends StatefulWidget{
   const RegisterScreen({super.key});
@@ -29,9 +31,9 @@ class RegisterScreenState extends State<RegisterScreen> {
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color.fromARGB(255, 0, 0, 0),
-                      spreadRadius: 2,
-                      blurRadius: 8,
+                      color: Colors.black,
+                      spreadRadius: 1,
+                      blurRadius: 4,
                       offset: Offset.zero
                     )
                   ],
@@ -39,7 +41,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                 ),
                 height: 320,
                 width: 340,
-                padding: EdgeInsetsGeometry.fromLTRB(8,8,8,8),
+                padding: EdgeInsets.all(8),
                 child: Column(
                   children: [
                     Container(
@@ -48,7 +50,10 @@ class RegisterScreenState extends State<RegisterScreen> {
                         "REGISTRE-SE",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 36
+                          fontSize: 36,
+                          shadows: [
+                            Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
+                          ]
                         ), 
                       ),
                     ),
@@ -62,29 +67,37 @@ class RegisterScreenState extends State<RegisterScreen> {
                       width: 400,
                       height: 200,
                       child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Text("Insira seu Email:", style: TextStyle(fontSize: 25),),
+                          Text(
+                            "Insira seu Email:",
+                            style: TextStyle(
+                              fontSize: 25,
+                              color: Colors.green,
+                            ),
+                          ),
                           TextField(),
-                          TextButton(
-                            onPressed: (){
-              
-                            }, child: Container(
-                              margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              alignment: Alignment.center,
-                              width: 120,
-                              height: 60,
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(30)
-                              ),
-                              child: Text(
+                          Container(
+                            width: 150,
+                            height: 42,
+                            decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(20)
+                            ),
+                            child: TextButton(
+                              onPressed: (){
+                                          
+                              }, child: Text(
                                 "Enviar",
                                 style: TextStyle(
                                   color: Colors.white,
-                                  fontSize:24
+                                  fontSize:24,
+                                  shadows: [
+                                    Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
+                                  ]
                                 )
                               )
-                            )
+                            ),
                           )
                         ],
                       ),
@@ -104,7 +117,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print("TESTANDO BUTTON");
+                      MyAppState.of(context)?.changetoLogin(const LoginScreen());
                     },
                     child: Text("Clique Aqui!", style: TextStyle(color: Colors.cyanAccent, fontSize: 20),)
                   )

@@ -21,6 +21,9 @@ class FixedAppBar extends StatelessWidget implements PreferredSizeWidget{
               //backgroundColor: Colors.black
             ),
             TextSpan(
+              style: TextStyle(shadows: [
+                Shadow(color: Colors.black,offset: Offset(2, 2), blurRadius: 1)
+              ]),
               children:[
                 TextSpan(text: "AG", style: TextStyle(color: Colors.red)),
                 TextSpan(text: "Tech", style: TextStyle(color: Colors.white))

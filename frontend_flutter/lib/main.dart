@@ -34,10 +34,10 @@ class MyAppState extends State<MyApp>{
     });
   }
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'AgTech',
       home: Scaffold(
         appBar: FixedAppBar(),
         body: _currentbody,

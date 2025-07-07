@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget{
               BoxShadow(
                 color: Colors.black,
                 spreadRadius: 1,
-                blurRadius: 6,
+                blurRadius: 4,
                 offset: Offset.zero
               )
             ]
@@ -31,7 +31,7 @@ class HomeScreen extends StatelessWidget{
           padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
           child:Center(
             child: Container(
-              color:Colors.blue,
+              //color:Colors.blue,
               width: 260,
               height: 260,
               padding: EdgeInsets.all(20),
@@ -39,11 +39,19 @@ class HomeScreen extends StatelessWidget{
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [ 
                   Container(
-                    width: 150,
-                    height: 42,
+                    width: 200,
+                    height: 64,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(26)
+                      borderRadius: BorderRadius.circular(26),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          offset: Offset.zero,
+                          spreadRadius: 1,
+                          blurRadius: 4
+                        )
+                      ]
                     ),
                     //alignment: Alignment.center,
                     child: TextButton(
@@ -52,18 +60,29 @@ class HomeScreen extends StatelessWidget{
                       }, child:Text(
                         "REGISTER",
                         style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 24
+                          color: Colors.green,
+                          fontSize: 36,
+                          shadows: [
+                            Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
+                          ]
                         ),
                       )
                     ),
                   ),
                   Container(
-                    width: 150,
-                    height: 42,
+                    width: 200,
+                    height: 64,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(26)
+                      borderRadius: BorderRadius.circular(26),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          offset: Offset.zero,
+                          spreadRadius: 1,
+                          blurRadius: 4
+                        )
+                      ]
                     ),
                     child: TextButton(
                       onPressed: (){
@@ -71,8 +90,11 @@ class HomeScreen extends StatelessWidget{
                       }, child: Text(
                         "Login",
                         style: TextStyle(
-                          color: Colors.red,
-                          fontSize: 24
+                          color: Colors.green,
+                          fontSize: 36,
+                          shadows: [
+                            Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
+                          ]
                         ),
                       )
                     ),
