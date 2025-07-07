@@ -104,7 +104,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print("SEXO ANAL");
+                      print("TESTANDO BUTTON");
                     },
                     child: Text("Clique Aqui!", style: TextStyle(color: Colors.cyanAccent, fontSize: 20),)
                   )
