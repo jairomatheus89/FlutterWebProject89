@@ -1,61 +1,52 @@
 import 'package:flutter/material.dart';
-import 'bottom_bar.dart'; // importing BottomBar()
-import 'header_bar.dart'; // importing AgTitle()
-import 'register.dart';
+import 'fixed_app_bar.dart';
+import 'fixed_footer.dart';
+import './screens/home/home_screen.dart';
+import './screens/register/register_screen.dart';
+import './screens/login/login_screen.dart';
 
-//MAIN
 void main() {
-  runApp(const App());
+  runApp(const MyApp());
 }
 
-// SCAFFOLD PRINCIPAL DA PAGINA DO APP
+class MyApp extends StatefulWidget{
+  const MyApp({super.key});
 
-class App extends StatelessWidget{
-  const App({super.key});
+  @override
+  State<MyApp> createState() => MyAppState();
+}
+
+
+
+class MyAppState extends State<MyApp>{
+
+  Widget _currentbody = const HomeScreen();
+
+  void changetoRegister(Widget newBody) {
+    setState(() {
+      _currentbody = RegisterScreen();
+    });
+  }
+
+  void changetoLogin(Widget newBody) {
+    setState(() {
+      _currentbody = LoginScreen();
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AgTitle(),
-        body: HomeBody(),
-        bottomNavigationBar: BottomBar(),
-      ),
+        appBar: FixedAppBar(),
+        body: _currentbody,
+        bottomNavigationBar: FixedFooter(),
+      )
     );
   }
-}
 
-// O WIDGET PARA A PAGINA HOME
-// QUE VAI DIRECIONAR O USUARIO 
-// PARA O LOGIN OU CADASTRO
 
-class HomeBody extends StatelessWidget {
-  const HomeBody({super.key});
-
-  @override
-  Widget build(BuildContext context){
-    return Center(
-      child: Container(
-        width: 400,
-        height: 700,
-        color: Colors.green,
-        child: Center(
-          child: Column(
-            children: [
-              TextButton(onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegisterWidget())
-                );
-
-              }, child: Text(
-                    "REGISTER"
-                )
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
+  static MyAppState? of(BuildContext context) =>
+      context.findAncestorStateOfType<MyAppState>();
 }
