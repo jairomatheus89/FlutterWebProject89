@@ -13,10 +13,23 @@ exports.CreateUserDTO = void 0;
 const class_validator_1 = require("class-validator");
 class CreateUserDTO {
     email;
+    username;
+    password;
 }
 exports.CreateUserDTO = CreateUserDTO;
 __decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'Email deve ser preenchida' }),
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], CreateUserDTO.prototype, "email", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'username deve ser preenchida' }),
+    (0, class_validator_1.MinLength)(5, { message: "O username precisa de no minimo 5 caracteres" }),
+    __metadata("design:type", String)
+], CreateUserDTO.prototype, "username", void 0);
+__decorate([
+    (0, class_validator_1.IsNotEmpty)({ message: 'senha deve ser preenchida' }),
+    (0, class_validator_1.MinLength)(8, { message: "A senha precisa de no minimo 8 caracteres" }),
+    __metadata("design:type", String)
+], CreateUserDTO.prototype, "password", void 0);
 //# sourceMappingURL=create-user.dto.js.map

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import '../login/login_screen.dart';
+import '../widget/register_form.dart';
+import '../widget/log_reg_clikaqui.dart';
 import '../../main.dart';
 
 class RegisterScreen extends StatefulWidget{
+
   const RegisterScreen({super.key});
 
   @override
@@ -11,16 +14,14 @@ class RegisterScreen extends StatefulWidget{
 
 
 class RegisterScreenState extends State<RegisterScreen> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.red,
       child: Center(
-        child: Container(
+        child: SizedBox(
           width: 340,
-          height: 360,
+          height: 480,
           //color: Colors.purple,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -39,8 +40,8 @@ class RegisterScreenState extends State<RegisterScreen> {
                   ],
                   color: Colors.green
                 ),
-                height: 320,
-                width: 340,
+                height: 420,
+                width: 440,
                 padding: EdgeInsets.all(8),
                 child: Column(
                   children: [
@@ -50,7 +51,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                         "REGISTRE-SE",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 36,
+                          fontSize: 26,
                           shadows: [
                             Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
                           ]
@@ -65,43 +66,9 @@ class RegisterScreenState extends State<RegisterScreen> {
                         color: Colors.white,
                       ),
                       width: 400,
-                      height: 200,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            "Insira seu Email:",
-                            style: TextStyle(
-                              fontSize: 25,
-                              color: Colors.green,
-                            ),
-                          ),
-                          TextField(),
-                          Container(
-                            width: 150,
-                            height: 42,
-                            decoration: BoxDecoration(
-                              color: Colors.green,
-                              borderRadius: BorderRadius.circular(20)
-                            ),
-                            child: TextButton(
-                              onPressed: (){
-                                          
-                              }, child: Text(
-                                "Enviar",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize:24,
-                                  shadows: [
-                                    Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
-                                  ]
-                                )
-                              )
-                            ),
-                          )
-                        ],
-                      ),
-                    )
+                      height: 332,
+                      child: FormFieldWidget(),
+                    ),    
                   ],
                 ),
               ),
@@ -119,7 +86,7 @@ class RegisterScreenState extends State<RegisterScreen> {
                     onTap: () {
                       MyAppState.of(context)?.changetoLogin(const LoginScreen());
                     },
-                    child: Text("Clique Aqui!", style: TextStyle(color: Colors.cyanAccent, fontSize: 20),)
+                    child:OnHoverCliqueAqui(),
                   )
                 ]
               )
@@ -130,3 +97,4 @@ class RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+

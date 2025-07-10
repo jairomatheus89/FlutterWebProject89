@@ -3,7 +3,6 @@ import { CreateUserDTO } from './dto/create-user.dto';
 export declare class AppController {
     private readonly appService;
     constructor(appService: AppService);
-    getHello(): string;
     registerUser(dto: CreateUserDTO): Promise<{
         SUCCESO: string;
     }>;

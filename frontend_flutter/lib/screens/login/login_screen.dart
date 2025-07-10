@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend_flutter/main.dart';
 import '../register/register_screen.dart';
+import '../widget/log_reg_clikaqui.dart';
+import '../widget/login_form.dart';
 
 
 class LoginScreen extends StatefulWidget{
@@ -14,7 +16,6 @@ class LoginScreen extends StatefulWidget{
 
 class LoginScreenState extends State<LoginScreen> {
 
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -22,16 +23,16 @@ class LoginScreenState extends State<LoginScreen> {
         color: Colors.red
       ),
       child: Center(
-        child: Container(
+        child: SizedBox(
           width: 340,
-          height: 500,
+          height: 560,
           //color: Colors.amber,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 width: 340,
-                height: 360,
+                height: 320,
                 padding: EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Colors.green,
@@ -55,7 +56,7 @@ class LoginScreenState extends State<LoginScreen> {
                         height: 50,
                         //color: const Color.fromARGB(255, 200, 255, 0),
                         child: Text(
-                          "Login",
+                          "LOGIN",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 36,
@@ -67,48 +68,14 @@ class LoginScreenState extends State<LoginScreen> {
                       ),
                       Container(
                         width: 400,
-                        height: 200,
+                        height: 240,
                         padding: EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           color: Colors.white,
                         ),
                         child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              Text(
-                                "Insira seu email",
-                                style: TextStyle(
-                                  fontSize: 25,
-                                  color: Colors.green,
-                                )
-                              ),
-                              TextField(),
-                              Container(
-                                width:150,
-                                height: 42,
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.circular(20)
-                                ),
-                                child: TextButton(
-                                  onPressed: (){
-                                    
-                                  }, child: Text(
-                                    "Enviar",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 24,
-                                      shadows: [
-                                        Shadow(color: Colors.black, offset: Offset(1, 1), blurRadius: 1)
-                                      ]
-                                    ),
-                                  )
-                                ),
-                              )
-                            ],
-                          ),
+                          child: LoginFormField()
                         ),
                       )
                     ],
@@ -122,8 +89,9 @@ class LoginScreenState extends State<LoginScreen> {
                   GestureDetector(
                     onTap: (){
                       MyAppState.of(context)?.changetoRegister(const RegisterScreen());
+                      MyAppState.of(context)?.disableMessageSucess();
                     },
-                    child: Text("Clique Aqui!", style: TextStyle(color: Colors.cyanAccent, fontSize: 20),),
+                    child: OnHoverCliqueAqui(),
                   )
                 ],
               )
@@ -133,4 +101,8 @@ class LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  static LoginScreenState? of(BuildContext context) => context.findRootAncestorStateOfType<LoginScreenState>();
 }
+
+

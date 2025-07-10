@@ -12,13 +12,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("./prisma/prisma.service");
+const bcrypt = require("bcrypt");
+const saltOrRounds = 10;
 let AppService = class AppService {
     prisma;
     constructor(prisma) {
         this.prisma = prisma;
-    }
-    getHello() {
-        return 'Hello World!';
     }
     async createUser(data) {
         const emailrepeat = await this.prisma.user.findUnique({
@@ -27,6 +26,14 @@ let AppService = class AppService {
         if (emailrepeat) {
             throw new common_1.HttpException("Esse Email ja esta sendo usado, digite outro", 400);
         }
+        const namerepeat = await this.prisma.user.findUnique({
+            where: { username: data.username }
+        });
+        if (namerepeat) {
+            throw new common_1.HttpException("Esse username ja esta em uso", 400);
+        }
+        const hashpassword = await bcrypt.hash(data.password, saltOrRounds);
+        data.password = hashpassword;
         await this.prisma.user.create({
             data,
         });
