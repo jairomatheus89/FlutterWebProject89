@@ -16,13 +16,20 @@ exports.AuthCotroller = void 0;
 const common_1 = require("@nestjs/common");
 const auth_service_1 = require("./auth.service");
 const sign_user_dto_1 = require("../dto/sign-user.dto");
+const auth_guard_1 = require("./auth.guard");
+const app_service_1 = require("../app.service");
 let AuthCotroller = class AuthCotroller {
     authService;
-    constructor(authService) {
+    appService;
+    constructor(authService, appService) {
         this.authService = authService;
+        this.appService = appService;
     }
     signPost(dto) {
         return this.authService.login(dto);
+    }
+    showUserData(req) {
+        return this.appService.showUserEmail(req.user);
     }
 };
 exports.AuthCotroller = AuthCotroller;
@@ -33,8 +40,17 @@ __decorate([
     __metadata("design:paramtypes", [sign_user_dto_1.SignUserDTO]),
     __metadata("design:returntype", void 0)
 ], AuthCotroller.prototype, "signPost", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    (0, common_1.Get)('profile'),
+    __param(0, (0, common_1.Req)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AuthCotroller.prototype, "showUserData", null);
 exports.AuthCotroller = AuthCotroller = __decorate([
     (0, common_1.Controller)(),
-    __metadata("design:paramtypes", [auth_service_1.AuthService])
+    __metadata("design:paramtypes", [auth_service_1.AuthService,
+        app_service_1.AppService])
 ], AuthCotroller);
 //# sourceMappingURL=auth.controller.js.map

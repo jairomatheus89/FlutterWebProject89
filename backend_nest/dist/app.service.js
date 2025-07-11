@@ -39,6 +39,15 @@ let AppService = class AppService {
             data,
         });
     }
+    async showUserEmail(data) {
+        const user = await this.prisma.user.findUnique({
+            where: { username: data }
+        });
+        return {
+            seuemailfdp: user?.email,
+            alerta: "UM DIA EU COMO A MARINA AINDA TA!...",
+        };
+    }
 };
 exports.AppService = AppService;
 exports.AppService = AppService = __decorate([

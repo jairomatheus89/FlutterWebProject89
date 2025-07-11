@@ -19,7 +19,6 @@ class MyApp extends StatefulWidget{
 
 class MyAppState extends State<MyApp>{
 
-
   var _floatingcreateSuccessWidget;
   Widget _currentbody = const HomeScreen();
 

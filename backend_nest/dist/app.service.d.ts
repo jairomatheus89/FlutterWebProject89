@@ -6,4 +6,8 @@ export declare class AppService {
     hashpassword: string;
     constructor(prisma: PrismaService);
     createUser(data: Prisma.userCreateInput): Promise<void>;
+    showUserEmail(data: string): Promise<{
+        seuemailfdp: string | undefined;
+        alerta: string;
+    }>;
 }
