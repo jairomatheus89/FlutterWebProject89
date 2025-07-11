@@ -58,15 +58,15 @@ class _FormFieldWidgetState extends State<FormFieldWidget> {
       var postResponse = await postRequest();
 
       if(postResponse.statusCode == 400){
-        var handleJson = await postResponse.body;
+        var handleJson = postResponse.body;
 
-        var msg_error = json.decode(handleJson)["message"][0];
-        print(msg_error);
+        var msgError = json.decode(handleJson)["message"][0];
+        print(msgError);
         
         setState(() {
           clearInputs();
         });
-        formAlert = Text(msg_error, style: TextStyle(color: Colors.red, fontSize: 12),);
+        formAlert = Text(msgError, style: TextStyle(color: Colors.red, fontSize: 12),);
         return;
       }
 

@@ -20,7 +20,7 @@ class MyApp extends StatefulWidget{
 class MyAppState extends State<MyApp>{
 
 
-  var _floatingcreateSuccessWidget = null;
+  var _floatingcreateSuccessWidget;
   Widget _currentbody = const HomeScreen();
 
   void createaccountSuccess(){

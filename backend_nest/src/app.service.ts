@@ -3,10 +3,12 @@ import { PrismaService } from './prisma/prisma.service';
 import { Prisma } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 
-const saltOrRounds = 10;
+
 
 @Injectable()
 export class AppService {
+  saltOrRounds: number = 10;
+  hashpassword: string;
 
   constructor(private prisma: PrismaService){}
   
@@ -26,9 +28,9 @@ export class AppService {
       throw new HttpException("Esse username ja esta em uso",400);
     }
 
-    const hashpassword = await bcrypt.hash(data.password, saltOrRounds)
+    this.hashpassword = await bcrypt.hash(data.password, this.saltOrRounds)
 
-    data.password = hashpassword
+    data.password = this.hashpassword
 
     await this.prisma.user.create({
       data,

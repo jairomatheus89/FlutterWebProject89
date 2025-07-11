@@ -9,40 +9,40 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
+exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
-const prisma_service_1 = require("./prisma/prisma.service");
+const prisma_service_1 = require("../prisma/prisma.service");
+const jwt_1 = require("@nestjs/jwt");
 const bcrypt = require("bcrypt");
-let AppService = class AppService {
+let AuthService = class AuthService {
     prisma;
-    saltOrRounds = 10;
-    hashpassword;
-    constructor(prisma) {
+    jwtService;
+    constructor(prisma, jwtService) {
         this.prisma = prisma;
+        this.jwtService = jwtService;
     }
-    async createUser(data) {
-        const emailrepeat = await this.prisma.user.findUnique({
-            where: { email: data.email }
-        });
-        if (emailrepeat) {
-            throw new common_1.HttpException("Esse Email ja esta sendo usado, digite outro", 400);
-        }
-        const namerepeat = await this.prisma.user.findUnique({
+    async login(data) {
+        const user = await this.prisma.user.findUnique({
             where: { username: data.username }
         });
-        if (namerepeat) {
-            throw new common_1.HttpException("Esse username ja esta em uso", 400);
+        if (!user) {
+            throw new common_1.HttpException("Este usuario não existe...", 400);
         }
-        this.hashpassword = await bcrypt.hash(data.password, this.saltOrRounds);
-        data.password = this.hashpassword;
-        await this.prisma.user.create({
-            data,
-        });
+        const hashpass = user.password;
+        const comparedPass = await bcrypt.compare(data.password, hashpass);
+        const payload = { username: user.username };
+        if (comparedPass) {
+            return { access_token: await this.jwtService.signAsync(payload) };
+        }
+        else {
+            throw new common_1.UnauthorizedException;
+        }
     }
 };
-exports.AppService = AppService;
-exports.AppService = AppService = __decorate([
+exports.AuthService = AuthService;
+exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [prisma_service_1.PrismaService])
-], AppService);
-//# sourceMappingURL=app.service.js.map
+    __metadata("design:paramtypes", [prisma_service_1.PrismaService,
+        jwt_1.JwtService])
+], AuthService);
+//# sourceMappingURL=auth.service.js.map

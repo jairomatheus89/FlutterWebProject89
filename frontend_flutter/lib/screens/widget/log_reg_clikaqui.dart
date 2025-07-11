@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class OnHoverCliqueAqui extends StatefulWidget{
 
   const OnHoverCliqueAqui({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   State<StatefulWidget> createState() {

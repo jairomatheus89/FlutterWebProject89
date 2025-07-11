@@ -1,18 +1,14 @@
-import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http; //HTTP Import
+import 'dart:convert'; //http converter data to json import
 
-class AuthService extends StatefulWidget{
-  const AuthService({super.key});
 
-  @override
-  State<AuthService> createState(){
-    return _AuthServiceState();  
-  }
-}
+// class AuthService {
 
-class _AuthServiceState extends State<AuthService>{
+//   Future<http.Response> loginRequest(data){
 
-  Widget build(BuildContext context){
+//     return http.post(
 
-    return SizedBox();
-  }
-}
+//     )
+//   }
+
+// }

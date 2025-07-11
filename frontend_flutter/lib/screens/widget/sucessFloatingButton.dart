@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SuccessCreateUserFloat extends StatefulWidget {
   const SuccessCreateUserFloat({
@@ -33,6 +32,7 @@ class _SuccessCreateUserFloatState extends State<SuccessCreateUserFloat> {
   }
 
 
+  @override
   Widget build(BuildContext context){
 
     if(!colorTurnColor){
