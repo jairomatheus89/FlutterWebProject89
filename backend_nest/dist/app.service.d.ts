@@ -7,7 +7,9 @@ export declare class AppService {
     constructor(prisma: PrismaService);
     createUser(data: Prisma.userCreateInput): Promise<void>;
     showUserEmail(data: string): Promise<{
-        seuemailfdp: string | undefined;
-        alerta: string;
+        datas: {
+            email: string | undefined;
+            username: string | undefined;
+        };
     }>;
 }

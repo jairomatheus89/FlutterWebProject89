@@ -44,8 +44,10 @@ let AppService = class AppService {
             where: { username: data }
         });
         return {
-            seuemailfdp: user?.email,
-            alerta: "UM DIA EU COMO A MARINA AINDA TA!...",
+            datas: {
+                email: user?.email,
+                username: user?.username
+            }
         };
     }
 };

@@ -35,7 +35,7 @@ let AuthService = class AuthService {
             return { access_token: await this.jwtService.signAsync(payload) };
         }
         else {
-            throw new common_1.UnauthorizedException;
+            throw new common_1.HttpException("Senha não corresponde!...", 401);
         }
     }
 };

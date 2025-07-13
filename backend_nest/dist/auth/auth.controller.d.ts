@@ -9,7 +9,9 @@ export declare class AuthCotroller {
         access_token: string;
     }>;
     showUserData(req: any): Promise<{
-        seuemailfdp: string | undefined;
-        alerta: string;
+        datas: {
+            email: string | undefined;
+            username: string | undefined;
+        };
     }>;
 }

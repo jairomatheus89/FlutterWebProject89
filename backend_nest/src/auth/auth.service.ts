@@ -31,7 +31,7 @@ export class AuthService {
             return {access_token: await this.jwtService.signAsync(payload)};
 
         } else {
-            throw new UnauthorizedException;
+            throw new HttpException("Senha não corresponde!...",401);
         }
     }    
     
