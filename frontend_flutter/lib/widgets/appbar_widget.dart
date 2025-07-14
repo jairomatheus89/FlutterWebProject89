@@ -8,19 +8,27 @@ class AgtechAppBar extends StatelessWidget implements PreferredSizeWidget{
     return AppBar(
       backgroundColor: Colors.green,
       title: Center(
-        child: Text.rich(
-          TextSpan(
-            children: [
+        child: GestureDetector(
+          onTap: (){
+            Navigator.pushReplacementNamed(context, '/'); 
+          },
+          child: MouseRegion(
+            cursor: SystemMouseCursors.click,
+            child: Text.rich(
               TextSpan(
-                text: "AG",
-                style: TextStyle(color: Colors.red)
-              ),
-              TextSpan(
-                text: "Tech",
-                style: TextStyle(color: Colors.white)
+                children: [
+                  TextSpan(
+                    text: "AG",
+                    style: TextStyle(color: Colors.red)
+                  ),
+                  TextSpan(
+                    text: "Tech",
+                    style: TextStyle(color: Colors.white)
+                  )
+                ]
               )
-            ]
-          )
+            ),
+          ),
         ),
       ),
     );

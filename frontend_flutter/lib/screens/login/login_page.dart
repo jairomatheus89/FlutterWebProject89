@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import '../../widgets/appbar_widget.dart';
 
@@ -11,7 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   
-  Color register_click_color = Colors.green;
+  Color _butToLoginColor = Colors.red;
 
 
   @override
@@ -36,23 +35,36 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               ),
             ),
-            Text.rich(
-              TextSpan(
-                children:[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text.rich(
                   TextSpan(
-                    text: "Não possui uma conta? ",
-                  ),
-                  TextSpan(
-                    text: "Clique Aqui!",
-                    style: TextStyle(
-                      color: register_click_color
-                    ),
-                    recognizer: TapGestureRecognizer()..onTap = () {
-                      Navigator.pushNamed(context, '/register');
-                    }
+                    text: "Ja possui uma conta? ",
+                    style: TextStyle(color: Colors.green)
                   )
-                ]
-              )
+                ),
+                MouseRegion(
+                  cursor: SystemMouseCursors.click,
+                  onEnter: (e){
+                    setState(() {
+                      _butToLoginColor = const Color.fromARGB(255, 0, 126, 143);
+                    });
+                  },
+                  onExit: (e){
+                    setState(() {
+                      _butToLoginColor = Colors.red;
+                    });
+                  },
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.pushReplacementNamed(context, '/register');
+                    },
+                    child: Text("Clique Aqui!", style: TextStyle(color: _butToLoginColor),),
+                  ),
+                  
+                )
+              ],
             )
           ],
         ),
